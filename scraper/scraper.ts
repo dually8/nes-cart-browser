@@ -25,12 +25,15 @@ type GameDetails = {
   releaseDate: string;
 };
 
-async function getPageLinks(page: playwright.Page): Promise<string[]> {
-  const anchors = await page.locator('a').evaluateAll((elements) => {
-    return elements.map((el) => el.getAttribute('href') as string);
-  });
-  return anchors
-    .filter((href) => href?.includes('page='));
+/**
+ * Remove leading and trailing whitespace,
+ * replace hidden characters and non-breaking
+ * spaces with nothing
+ * @param str input string
+ * @returns cleaned string
+ */
+function cleanString(str: string): string {
+  return str.trim().replace(/\s|\u00a0/g, '');
 }
 
 async function getGameLinks(page: playwright.Page): Promise<GameLink[]> {
@@ -93,6 +96,8 @@ async function scrapeGames() {
 
   // First, get the initial page of games
   await page.goto(SEARCH_URL);
+  const basePageUrl = 'https://nescartdb.com/search/advanced?region_op=equal&region=USA&page=';
+  const pageLinks = Array.from({length: 15}, (_, i) => basePageUrl + (i + 2));
   let games = await getGameLinks(page);
   for (let game of games) {
     logger.info('Going to', game.link);
@@ -101,7 +106,7 @@ async function scrapeGames() {
     await saveGameImage(page, catalogId);
     nesCarts.push({
       catalogId,
-      region,
+      region: cleanString(region),
       coverPhotoUrl: `/assets/${catalogId}.png`,
       releaseDate,
       title: gameTitle,
@@ -109,7 +114,6 @@ async function scrapeGames() {
   }
 
   // Then, go through the list of pageLinks and do the same
-  const pageLinks = await getPageLinks(page);
   for (let link of pageLinks) {
     logger.info('Going to', link);
     await page.goto(link);
