@@ -4,7 +4,7 @@ import type { NesCartItem } from '../src/models/NesCartItem';
 import fs from 'fs';
 import { Logger, LogLevel } from './logger';
 
-const ASSETS_DIR = path.join(process.cwd(), 'src', 'assets');
+const ASSETS_DIR = path.join(process.cwd(), 'static', 'assets');
 const BASE_URL = 'https://nescartdb.com';
 const SEARCH_URL = `${BASE_URL}/search/advanced?region_op=equal&region=USA`;
 const RESULT_SELECTOR = 'td > a:not(.header)[title="View the database profile for this game"]';
@@ -97,9 +97,10 @@ async function scrapeGames() {
   // First, get the initial page of games
   await page.goto(SEARCH_URL);
   const basePageUrl = 'https://nescartdb.com/search/advanced?region_op=equal&region=USA&page=';
-  const pageLinks = Array.from({length: 15}, (_, i) => basePageUrl + (i + 2));
+  // const pageLinks = Array.from({length: 15}, (_, i) => basePageUrl + (i + 2));
+  const pageLinks = Array.from({length: 1}, (_, i) => basePageUrl + (i + 2));
   let games = await getGameLinks(page);
-  for (let game of games) {
+  for (const game of games) {
     logger.info('Going to', game.link);
     await page.goto(game.link);
     const { gameTitle, catalogId, region, releaseDate } = await getGameDetails(page, game);
@@ -114,11 +115,11 @@ async function scrapeGames() {
   }
 
   // Then, go through the list of pageLinks and do the same
-  for (let link of pageLinks) {
+  for (const link of pageLinks) {
     logger.info('Going to', link);
     await page.goto(link);
     games = await getGameLinks(page);
-    for (let game of games) {
+    for (const game of games) {
       logger.info('Going to', game.link);
       await page.goto(game.link);
       const { gameTitle, catalogId, region, releaseDate } = await getGameDetails(page, game);
