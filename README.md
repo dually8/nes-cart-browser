@@ -12,6 +12,11 @@ This is a site that lets you browse NES games by their cartridge art. You can al
 4. Run `npm run preview` to run the prod build of the site
 5. Run `npm run build` to build the dist (outputs to `/build`).
 
+## Todo
+
+- [ ] Selecting a cartridge pops open a dialog that shows it's info and a link to its entry in nescartdb
+- [ ] Add fade in/out animations for the cards
+
 ---
 
 ## Resources
