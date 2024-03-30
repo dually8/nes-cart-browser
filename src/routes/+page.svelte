@@ -27,7 +27,8 @@
 
 	async function fetchNesCarts() {
 		try {
-			const response = await fetch('/nesCarts.json');
+			const basePath = window.location.origin.includes('github') ? '/nes-cart-browser' : '';
+			const response = await fetch(`${basePath}/nesCarts.json`);
 			nesCarts = await response.json();
 		} catch (error) {
 			console.error('Error fetching nesCarts:', error);
@@ -36,8 +37,8 @@
 		}
 	}
 
-  // TODO: Open dialog on cart click and show nescartdb entry
-  // https://nescartdb.com/search/advanced?catalog_op=contains&catalog={catalogId}
+	// TODO: Open dialog on cart click and show nescartdb entry
+	// https://nescartdb.com/search/advanced?catalog_op=contains&catalog={catalogId}
 </script>
 
 <div class="container py-2">
