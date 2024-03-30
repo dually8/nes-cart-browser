@@ -29,7 +29,11 @@
 		try {
 			const basePath = window.location.origin.includes('github') ? '/nes-cart-browser' : '';
 			const response = await fetch(`${basePath}/nesCarts.json`);
-			nesCarts = await response.json();
+			const _carts = await response.json() as NesCartItem[];
+			nesCarts = _carts.map((cart) => ({
+				...cart,
+				coverPhotoUrl: `${basePath}${cart.coverPhotoUrl}`
+			}));
 		} catch (error) {
 			console.error('Error fetching nesCarts:', error);
 		} finally {
