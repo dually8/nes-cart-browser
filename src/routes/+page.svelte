@@ -29,7 +29,7 @@
 		try {
 			const basePath = window.location.origin.includes('github') ? '/nes-cart-browser' : '';
 			const response = await fetch(`${basePath}/nesCarts.json`);
-			const _carts = await response.json() as NesCartItem[];
+			const _carts = (await response.json()) as NesCartItem[];
 			nesCarts = _carts.map((cart) => ({
 				...cart,
 				coverPhotoUrl: `${basePath}${cart.coverPhotoUrl}`
@@ -94,7 +94,7 @@
 							alt="Cover Photo"
 							class="h-auto w-full"
 							aria-hidden="true"
-							loading={i < 3 ? 'eager' : 'lazy'}
+							loading={i < 10 ? 'eager' : 'lazy'}
 							width="175"
 							height="195"
 						/>
