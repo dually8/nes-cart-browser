@@ -94,6 +94,9 @@
 							alt="Cover Photo"
 							class="h-auto w-full"
 							aria-hidden="true"
+							loading={i < 3 ? 'eager' : 'lazy'}
+							width="175"
+							height="195"
 						/>
 					</CardHeader>
 					<CardContent>
