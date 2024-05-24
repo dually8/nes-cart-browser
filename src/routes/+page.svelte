@@ -1,45 +1,29 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { fade, fly } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
 	import { quintInOut } from 'svelte/easing';
 	import { toggleMode } from 'mode-watcher';
 	import { Button } from '$lib/components/ui/button';
-	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
+	import { Card, CardContent, CardHeader } from '$lib/components/ui/card';
 	import { Input } from '$lib/components/ui/input';
-	import { Skeleton } from '$lib/components/ui/skeleton';
 	import Sun from 'lucide-svelte/icons/sun';
 	import Moon from 'lucide-svelte/icons/moon';
 	import type { NesCartItem } from '../models/NesCartItem';
+	import carts from '../nesCarts.json';
 
-	let nesCarts: NesCartItem[] = [];
+	const basePath = import.meta.env?.VITE_BASE_URL ?? '';
+
+	let nesCarts: NesCartItem[] = carts.map((cart) => ({
+		...cart,
+		coverPhotoUrl: `${basePath}${cart.coverPhotoUrl}`
+	}));
+
 	let searchQuery = '';
-	let isLoading = true;
 
 	// On search, filter the nesCarts array
 	$: filteredNesCarts =
 		nesCarts?.filter((nesCart) =>
 			nesCart.title.toLowerCase().includes(searchQuery.toLowerCase())
 		) || [];
-
-	onMount(async () => {
-		await fetchNesCarts();
-	});
-
-	async function fetchNesCarts() {
-		try {
-			const basePath = window.location.origin.includes('github') ? '/nes-cart-browser' : '';
-			const response = await fetch(`${basePath}/nesCarts.json`);
-			const _carts = (await response.json()) as NesCartItem[];
-			nesCarts = _carts.map((cart) => ({
-				...cart,
-				coverPhotoUrl: `${basePath}${cart.coverPhotoUrl}`
-			}));
-		} catch (error) {
-			console.error('Error fetching nesCarts:', error);
-		} finally {
-			isLoading = false;
-		}
-	}
 
 	// TODO: Open dialog on cart click and show nescartdb entry
 	// https://nescartdb.com/search/advanced?catalog_op=contains&catalog={catalogId}
@@ -59,22 +43,7 @@
 		</Button>
 	</div>
 	<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-		{#if isLoading}
-			<!-- Skeleton cards -->
-			{#each Array(6) as _}
-				<Card>
-					<CardTitle>
-						<div class="p-2">
-							<Skeleton class="h-64 w-full" />
-						</div>
-					</CardTitle>
-					<CardContent>
-						<Skeleton class="mt-2 h-6 w-3/4" />
-						<Skeleton class="mt-2 h-4 w-1/2" />
-					</CardContent>
-				</Card>
-			{/each}
-		{:else if filteredNesCarts.length === 0}
+		{#if filteredNesCarts.length === 0}
 			<p
 				class="px-1 text-lg font-semibold"
 				in:fade={{
