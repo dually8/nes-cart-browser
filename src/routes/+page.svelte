@@ -11,11 +11,11 @@
 	import type { NesCartItem } from '../models/NesCartItem';
 	import carts from '../nesCarts.json';
 	import { onMount } from 'svelte';
+	import { base } from '$app/paths';
 
-	const basePath = import.meta.env?.VITE_BASE_URL ?? '';
 	const baseCarts = carts.map((cart) => ({
 		...cart,
-		coverPhotoUrl: `${basePath}${cart.coverPhotoUrl}`
+		coverPhotoUrl: `${base}${cart.coverPhotoUrl}`
 	}));
 
 	let nesCarts: NesCartItem[] = takeCarts(20);
