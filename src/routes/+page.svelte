@@ -2,6 +2,7 @@
 	import { fade } from 'svelte/transition';
 	import { quintInOut } from 'svelte/easing';
 	import { toggleMode } from 'mode-watcher';
+	import { Image } from '@unpic/svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { Card, CardContent, CardHeader } from '$lib/components/ui/card';
 	import { Input } from '$lib/components/ui/input';
@@ -9,13 +10,15 @@
 	import Moon from 'lucide-svelte/icons/moon';
 	import type { NesCartItem } from '../models/NesCartItem';
 	import carts from '../nesCarts.json';
+	import { onMount } from 'svelte';
 
 	const basePath = import.meta.env?.VITE_BASE_URL ?? '';
-
-	let nesCarts: NesCartItem[] = carts.map((cart) => ({
+	const baseCarts = carts.map((cart) => ({
 		...cart,
 		coverPhotoUrl: `${basePath}${cart.coverPhotoUrl}`
 	}));
+
+	let nesCarts: NesCartItem[] = takeCarts(20);
 
 	let searchQuery = '';
 
@@ -27,6 +30,14 @@
 
 	// TODO: Open dialog on cart click and show nescartdb entry
 	// https://nescartdb.com/search/advanced?catalog_op=contains&catalog={catalogId}
+
+	function takeCarts(numCarts?: number) {
+		return baseCarts.slice(0, numCarts ? Math.max(numCarts, 0) : undefined);
+	}
+
+	onMount(() => {
+		nesCarts = takeCarts();
+	});
 </script>
 
 <div class="container py-2">
@@ -56,27 +67,31 @@
 			</p>
 		{:else}
 			{#each filteredNesCarts as nesCart, i}
-				<Card>
-					<CardHeader>
-						<img
-							src={nesCart.coverPhotoUrl}
-							alt="Cover Photo"
-							class="h-auto w-full"
-							aria-hidden="true"
-							loading={i < 10 ? 'eager' : 'lazy'}
-							width="175"
-							height="195"
-						/>
-					</CardHeader>
-					<CardContent>
-						<h2 class="text-xl font-semibold">
-							{nesCart.title}
-						</h2>
-						<p class="text-lg">
-							{nesCart.catalogId}
-						</p>
-					</CardContent>
-				</Card>
+				<a
+					href={`https://nescartdb.com/search/advanced?catalog_op=contains&catalog=${nesCart.catalogId}`}
+					aria-label={`View details for ${nesCart.title} on NES Cart DB`}
+				>
+					<Card>
+						<CardHeader class="items-center">
+							<Image
+								src={nesCart.coverPhotoUrl}
+								alt={'Cover photo of ' + nesCart.title}
+								width={175}
+								height={195}
+								layout="constrained"
+								priority={i < 10}
+							/>
+						</CardHeader>
+						<CardContent>
+							<h2 class="text-xl font-semibold">
+								{nesCart.title}
+							</h2>
+							<p class="text-lg">
+								{nesCart.catalogId}
+							</p>
+						</CardContent>
+					</Card>
+				</a>
 			{/each}
 		{/if}
 	</div>
