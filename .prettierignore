@@ -2,3 +2,9 @@
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+# Ignore markdown
+*.md
+# Ignore static dir
+static/
+# Ignore yaml
+*.yml
