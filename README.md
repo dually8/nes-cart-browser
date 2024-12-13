@@ -4,13 +4,13 @@ This is a site that lets you browse NES games by their cartridge art. You can al
 
 ## Getting Started
 
-0. Install Node.js (20.x) and clone the repo
-1. Run `npm ci` to install the dependencies
-2. Run `npm run scrape` to run the web scraper
+0. Install Node.js (20.x), [pnpm](https://pnpm.io/installation), and clone the repo
+1. Run `pnpm install` to install the dependencies
+2. Run `pnpm run scrape` to run the web scraper
     - This scrapes [nescartdb](https://nescartdb.com/) for info and cartridge art
-3. Run `npm run dev` to dev against the site
-4. Run `npm run preview` to run the prod build of the site
-5. Run `npm run build` to build the dist (outputs to `/build`).
+3. Run `pnpm run dev` to dev against the site
+4. Run `pnpm run preview` to run the prod build of the site
+5. Run `pnpm run build` to build the dist (outputs to `/build`).
 
 ## Todo
 
