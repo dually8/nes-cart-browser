@@ -15,7 +15,7 @@
 
 	const baseCarts = carts.map((cart) => ({
 		...cart,
-		coverPhotoUrl: `${base}${cart.coverPhotoUrl}`
+		coverPhotoUrl: `${base}${cart.coverPhotoUrl}`,
 	}));
 
 	let nesCarts: NesCartItem[] = takeCarts(20);
@@ -25,7 +25,7 @@
 	// On search, filter the nesCarts array
 	$: filteredNesCarts =
 		nesCarts?.filter((nesCart) =>
-			nesCart.title.toLowerCase().includes(searchQuery.toLowerCase())
+			nesCart.title.toLowerCase().includes(searchQuery.toLowerCase()),
 		) || [];
 
 	// TODO: Open dialog on cart click and show nescartdb entry
@@ -42,14 +42,20 @@
 
 <div class="container py-2">
 	<div class="flex justify-between gap-1 py-4">
-		<Input type="text" placeholder="Search" class="grow" bind:value={searchQuery} />
-		<Button on:click={toggleMode} variant="outline" size="icon" class="flex-initial">
+		<Input
+			type="text"
+			placeholder="Search"
+			class="grow"
+			bind:value={searchQuery} />
+		<Button
+			on:click={toggleMode}
+			variant="outline"
+			size="icon"
+			class="flex-initial">
 			<Sun
-				class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-			/>
+				class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
 			<Moon
-				class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
-			/>
+				class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
 			<span class="sr-only">Toggle theme</span>
 		</Button>
 	</div>
@@ -60,17 +66,15 @@
 				in:fade={{
 					delay: 100,
 					duration: 300,
-					easing: quintInOut
-				}}
-			>
+					easing: quintInOut,
+				}}>
 				No results found
 			</p>
 		{:else}
 			{#each filteredNesCarts as nesCart, i}
 				<a
 					href={`https://nescartdb.com/search/advanced?catalog_op=contains&catalog=${nesCart.catalogId}`}
-					aria-label={`View details for ${nesCart.title} on NES Cart DB`}
-				>
+					aria-label={`View details for ${nesCart.title} on NES Cart DB`}>
 					<Card>
 						<CardHeader class="items-center">
 							<Image
@@ -79,8 +83,7 @@
 								width={175}
 								height={195}
 								layout="constrained"
-								priority={i < 10}
-							/>
+								priority={i < 10} />
 						</CardHeader>
 						<CardContent>
 							<h2 class="text-xl font-semibold">

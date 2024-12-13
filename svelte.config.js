@@ -16,15 +16,15 @@ const config = {
 			assets: 'build',
 			fallback: undefined,
 			precompress: true,
-			strict: true
+			strict: true,
 		}),
 		alias: {
 			'@/*': './src/lib/*',
 		},
 		paths: {
-			base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
+			base: process.argv.includes('dev') ? '' : process.env.BASE_PATH,
 		},
-	}
+	},
 };
 
 export default config;
