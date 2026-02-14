@@ -12,6 +12,11 @@ This is a site that lets you browse NES games by their cartridge art. You can al
 4. Run `pnpm run preview` to run the prod build of the site
 5. Run `pnpm run build` to build the dist (outputs to `/build`).
 
+## Documentation
+
+- 📚 **[UPGRADE.md](./UPGRADE.md)** - Guide for upgrading to Svelte 5 and SvelteKit 2.x latest
+- 🚀 **[IMAGE_OPTIMIZATION.md](./IMAGE_OPTIMIZATION.md)** - Recommendations for improving image loading and Lighthouse scores
+
 ## Todo
 
 - [ ] Selecting a cartridge pops open a dialog that shows it's info and a link to its entry in nescartdb
