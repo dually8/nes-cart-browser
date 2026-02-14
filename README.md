@@ -14,7 +14,9 @@ This is a site that lets you browse NES games by their cartridge art. You can al
 
 ## Documentation
 
-- 📚 **[UPGRADE.md](./UPGRADE.md)** - Guide for upgrading to Svelte 5 and SvelteKit 2.x latest
+- 🎯 **[DECISION_TREE.md](./DECISION_TREE.md)** - Start here! Quick reference for what to do next
+- 📖 **[SUMMARY.md](./SUMMARY.md)** - Executive summary of upgrade and optimization options
+- 📚 **[UPGRADE.md](./UPGRADE.md)** - Complete guide for upgrading to Svelte 5 and SvelteKit 2.x
 - 🚀 **[IMAGE_OPTIMIZATION.md](./IMAGE_OPTIMIZATION.md)** - Recommendations for improving image loading and Lighthouse scores
 
 ## Todo
