@@ -2,12 +2,10 @@
 	import { fade } from 'svelte/transition';
 	import { quintInOut } from 'svelte/easing';
 	import { toggleMode } from 'mode-watcher';
-	import { Image } from '@unpic/svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { Card, CardContent, CardHeader } from '$lib/components/ui/card';
 	import { Input } from '$lib/components/ui/input';
-	import Sun from 'lucide-svelte/icons/sun';
-	import Moon from 'lucide-svelte/icons/moon';
+	import { Sun, Moon } from '@lucide/svelte';
 	import type { NesCartItem } from '../models/NesCartItem';
 	import carts from '../nesCarts.json';
 	import { onMount } from 'svelte';
@@ -18,15 +16,18 @@
 		coverPhotoUrl: `${base}${cart.coverPhotoUrl}`,
 	}));
 
-	let nesCarts: NesCartItem[] = takeCarts(20);
+	let nesCarts: NesCartItem[] = $state(takeCarts(20));
 
-	let searchQuery = '';
+	let searchQuery = $state('');
 
 	// On search, filter the nesCarts array
-	$: filteredNesCarts =
-		nesCarts?.filter((nesCart) =>
-			nesCart.title.toLowerCase().includes(searchQuery.toLowerCase()),
-		) || [];
+	const filteredNesCarts = $derived.by(() => {
+		return (
+			nesCarts?.filter((nesCart) =>
+				nesCart.title.toLowerCase().includes(searchQuery.toLowerCase()),
+			) || []
+		);
+	});
 
 	// TODO: Open dialog on cart click and show nescartdb entry
 	// https://nescartdb.com/search/advanced?catalog_op=contains&catalog={catalogId}
@@ -48,7 +49,7 @@
 			class="grow"
 			bind:value={searchQuery} />
 		<Button
-			on:click={toggleMode}
+			onclick={toggleMode}
 			variant="outline"
 			size="icon"
 			class="flex-initial">
@@ -71,19 +72,16 @@
 				No results found
 			</p>
 		{:else}
-			{#each filteredNesCarts as nesCart, i}
+			{#each filteredNesCarts as nesCart, i (`${nesCart.catalogId}-${nesCart.title}`)}
 				<a
 					href={`https://nescartdb.com/search/advanced?catalog_op=contains&catalog=${nesCart.catalogId}`}
 					aria-label={`View details for ${nesCart.title} on NES Cart DB`}>
 					<Card>
 						<CardHeader class="items-center">
-							<Image
+							<enhanced:img
 								src={nesCart.coverPhotoUrl}
 								alt={'Cover photo of ' + nesCart.title}
-								width={175}
-								height={195}
-								layout="constrained"
-								priority={i < 10} />
+								loading={i < 10 ? 'eager' : 'lazy'} />
 						</CardHeader>
 						<CardContent>
 							<h2 class="text-xl font-semibold">
