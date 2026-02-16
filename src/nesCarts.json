@@ -560,20 +560,6 @@
 		"title": "Bible Adventures"
 	},
 	{
-		"catalogId": "WT-BC-6",
-		"region": " USA (NTSC)",
-		"coverPhotoUrl": "/assets/WT-BC-6.webp",
-		"releaseDate": "1991",
-		"title": "Bible Adventures"
-	},
-	{
-		"catalogId": "WT-BB-6",
-		"region": " USA (NTSC)",
-		"coverPhotoUrl": "/assets/WT-BB-6.webp",
-		"releaseDate": "1993",
-		"title": "Bible Buffet"
-	},
-	{
 		"catalogId": "WT-BB-6",
 		"region": " USA (NTSC)",
 		"coverPhotoUrl": "/assets/WT-BB-6.webp",
@@ -2226,13 +2212,6 @@
 		"title": "Impossible Mission-II"
 	},
 	{
-		"catalogId": "AVE-IM",
-		"region": " USA (NTSC)",
-		"coverPhotoUrl": "/assets/AVE-IM.webp",
-		"releaseDate": "1989",
-		"title": "Impossible Mission-II"
-	},
-	{
 		"catalogId": "SEI-IM",
 		"region": " USA (NTSC)",
 		"coverPhotoUrl": "/assets/SEI-IM.webp",
@@ -2511,13 +2490,6 @@
 		"coverPhotoUrl": "/assets/CDR-KE-81016.webp",
 		"releaseDate": "1990",
 		"title": "King Neptune's Adventure"
-	},
-	{
-		"catalogId": "WT-KK-6",
-		"region": " USA (NTSC)",
-		"coverPhotoUrl": "/assets/WT-KK-6.webp",
-		"releaseDate": "1991",
-		"title": "King of Kings, The: The Early Years"
 	},
 	{
 		"catalogId": "WT-KK-6",
@@ -3731,13 +3703,6 @@
 		"title": "R.B.I. Baseball 3"
 	},
 	{
-		"catalogId": "TGN-001-RB",
-		"region": " USA (NTSC)",
-		"coverPhotoUrl": "/assets/TGN-001-RB.webp",
-		"releaseDate": "1987",
-		"title": "R.B.I. Baseball "
-	},
-	{
 		"catalogId": "NES-PM-USA",
 		"region": " USA (NTSC)",
 		"coverPhotoUrl": "/assets/NES-PM-USA.webp",
@@ -4009,13 +3974,6 @@
 		"coverPhotoUrl": "/assets/NES-XL-USA.webp",
 		"releaseDate": "September 1991",
 		"title": "Romance of the Three Kingdoms II"
-	},
-	{
-		"catalogId": "NES-XL-USA",
-		"region": " USA (NTSC)",
-		"coverPhotoUrl": "/assets/NES-XL-USA.webp",
-		"releaseDate": "September 1991",
-		"title": "Romance of the Three Kingdoms II "
 	},
 	{
 		"catalogId": "NES-RW-USA",
