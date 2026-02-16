@@ -5,6 +5,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Card, CardContent, CardHeader } from '$lib/components/ui/card';
 	import { Input } from '$lib/components/ui/input';
+	import { Image } from '@unpic/svelte';
 	import { Sun, Moon } from '@lucide/svelte';
 	import type { NesCartItem } from '../models/NesCartItem';
 	import carts from '../nesCarts.json';
@@ -77,11 +78,16 @@
 					href={`https://nescartdb.com/search/advanced?catalog_op=contains&catalog=${nesCart.catalogId}`}
 					aria-label={`View details for ${nesCart.title} on NES Cart DB`}>
 					<Card>
-						<CardHeader class="items-center">
-							<enhanced:img
+						<CardHeader class="items-center-safe justify-center-safe">
+							<Image
 								src={nesCart.coverPhotoUrl}
 								alt={'Cover photo of ' + nesCart.title}
-								loading={i < 10 ? 'eager' : 'lazy'} />
+								loading={i < 10 ? 'eager' : 'lazy'}
+								width={175}
+								height={195}
+								layout="constrained"
+								priority={i < 10}
+								breakpoints={[175, 350, 525]} />
 						</CardHeader>
 						<CardContent>
 							<h2 class="text-xl font-semibold">
