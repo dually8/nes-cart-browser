@@ -8,9 +8,9 @@ test('hydrates the cartridge list and loads images under the deployment path', a
 	await expect(page.getByRole('heading', { name: '10-Yard Fight', exact: true })).toBeVisible();
 	const image = page.getByRole('img', { name: 'Cover photo of 10-Yard Fight', exact: true });
 	await expect(image).toBeVisible();
-	await expect(image).toHaveAttribute(
+	await expect(image).toHaveJSProperty(
 		'src',
-		`${process.env.BASE_PATH ?? ''}/assets/NES-TY-USA.webp`,
+		new URL(`${process.env.BASE_PATH ?? ''}/assets/NES-TY-USA.webp`, page.url()).href,
 	);
 	await expect
 		.poll(() => image.evaluate((element) => (element as HTMLImageElement).naturalWidth))
