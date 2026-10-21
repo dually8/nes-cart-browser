@@ -1,0 +1,105 @@
+{
+	"observed": "2026-10-21T01:39:40.980Z",
+	"packages": [
+		{
+			"name": "typescript",
+			"range": "6",
+			"version": "6.0.3",
+			"published": "2026-04-16T23:38:27.905Z",
+			"engines": {
+				"node": ">=14.17"
+			}
+		},
+		{
+			"name": "@sveltejs/kit",
+			"range": "2",
+			"version": "2.70.3",
+			"published": "2026-08-18T15:02:00.715Z",
+			"engines": {
+				"node": ">=18.13"
+			},
+			"peers": {
+				"vite": "^5.0.3 || ^6.0.0 || ^7.0.0-beta.0 || ^8.0.0",
+				"svelte": "^4.0.0 || ^5.0.0-next.0",
+				"typescript": "^5.3.3 || ^6.0.0",
+				"@opentelemetry/api": "^1.0.0",
+				"@sveltejs/vite-plugin-svelte": "^3.0.0 || ^4.0.0-next.1 || ^5.0.0 || ^6.0.0-next.0 || ^7.0.0"
+			}
+		},
+		{
+			"name": "vite",
+			"range": "7",
+			"version": "7.3.7",
+			"published": "2026-10-06T05:11:19.017Z",
+			"engines": {
+				"node": "^20.19.0 || >=22.12.0"
+			},
+			"peers": {
+				"tsx": "^4.8.1",
+				"jiti": ">=1.21.0",
+				"less": "^4.0.0",
+				"sass": "^1.70.0",
+				"yaml": "^2.4.2",
+				"stylus": ">=0.54.8",
+				"terser": "^5.16.0",
+				"sugarss": "^5.0.0",
+				"@types/node": "^20.19.0 || >=22.12.0",
+				"lightningcss": "^1.21.0",
+				"sass-embedded": "^1.70.0"
+			}
+		},
+		{
+			"name": "@sveltejs/vite-plugin-svelte",
+			"range": "6",
+			"version": "6.2.4",
+			"published": "2026-01-09T19:02:07.800Z",
+			"engines": {
+				"node": "^20.19 || ^22.12 || >=24"
+			},
+			"peers": {
+				"vite": "^6.3.0 || ^7.0.0",
+				"svelte": "^5.0.0"
+			}
+		},
+		{
+			"name": "vitest",
+			"range": "4",
+			"version": "4.1.12",
+			"published": "2026-10-15T14:51:24.991Z",
+			"engines": {
+				"node": "^20.0.0 || ^22.0.0 || >=24.0.0"
+			},
+			"peers": {
+				"vite": "^6.0.0 || ^7.0.0 || ^8.0.0",
+				"jsdom": "*",
+				"happy-dom": "*",
+				"@vitest/ui": "4.1.12",
+				"@types/node": "^20.0.0 || ^22.0.0 || >=24.0.0",
+				"@edge-runtime/vm": "*",
+				"@opentelemetry/api": "^1.9.0",
+				"@vitest/coverage-v8": "4.1.12",
+				"@vitest/browser-preview": "4.1.12",
+				"@vitest/coverage-istanbul": "4.1.12",
+				"@vitest/browser-playwright": "4.1.12",
+				"@vitest/browser-webdriverio": "^4.1.11"
+			}
+		},
+		{
+			"name": "@vitest/browser-playwright",
+			"range": "4",
+			"version": "4.1.12",
+			"published": "2026-10-15T14:41:36.872Z",
+			"peers": {
+				"vitest": "4.1.12",
+				"playwright": "*"
+			}
+		},
+		{
+			"name": "@types/node",
+			"range": "24",
+			"version": "24.19.2",
+			"published": "2026-10-09T18:44:25.189Z",
+			"peers": {}
+		}
+	]
+}
