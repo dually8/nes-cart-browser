@@ -1,0 +1,16 @@
+{
+	"@types/node": {
+		"current": "24.19.2",
+		"latest": "26.6.5",
+		"wanted": "24.19.2",
+		"isDeprecated": false,
+		"dependencyType": "devDependencies"
+	},
+	"typescript": {
+		"current": "6.0.3",
+		"latest": "7.0.2",
+		"wanted": "6.0.3",
+		"isDeprecated": false,
+		"dependencyType": "devDependencies"
+	}
+}
