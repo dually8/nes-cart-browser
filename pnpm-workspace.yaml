@@ -1,4 +1,4 @@
-onlyBuiltDependencies:
-  - esbuild
-  - sharp
-  - svelte-preprocess
+engineStrict: true
+verifyDepsBeforeRun: error
+allowBuilds:
+  esbuild: true

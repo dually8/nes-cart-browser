@@ -13,6 +13,7 @@ const gitignorePath = path.resolve(import.meta.dirname, '.gitignore');
 export default defineConfig(
 	includeIgnoreFile(gitignorePath),
 	globalIgnores([
+		'.vscode/**',
 		// Ignore shadcn bits
 		'./src/lib/components/ui/*',
 		'.DS_Store',
