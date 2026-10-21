@@ -2,19 +2,19 @@
 	import { fade } from 'svelte/transition';
 	import { quintInOut } from 'svelte/easing';
 	import { toggleMode } from 'mode-watcher';
-	import { Button } from '$lib/components/ui/button';
-	import { Card, CardContent, CardHeader } from '$lib/components/ui/card';
-	import { Input } from '$lib/components/ui/input';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import { Card, CardContent, CardHeader } from '#lib/components/ui/card/index.js';
+	import { Input } from '#lib/components/ui/input/index.js';
 	import { Image } from '@unpic/svelte';
 	import { Sun, Moon } from '@lucide/svelte';
 	import type { NesCartItem } from '../models/NesCartItem';
 	import carts from '../nesCarts.json';
 	import { onMount } from 'svelte';
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
 
 	const baseCarts = carts.map((cart) => ({
 		...cart,
-		coverPhotoUrl: `${base}${cart.coverPhotoUrl}`,
+		coverPhotoUrl: asset(cart.coverPhotoUrl.slice(1) as Parameters<typeof asset>[0]),
 	}));
 
 	let nesCarts: NesCartItem[] = $state(takeCarts(20));

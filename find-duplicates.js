@@ -1,7 +1,9 @@
 import { readFileSync } from 'fs';
 
+/** @type {import('./src/models/NesCartItem').NesCartItem[]} */
 const data = JSON.parse(readFileSync('./src/nesCarts.json', 'utf-8'));
 
+/** @type {Record<string, { title: string; region: string; index: number }[]>} */
 const counts = {};
 
 data.forEach((item, index) => {
