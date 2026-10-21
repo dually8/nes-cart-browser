@@ -2,6 +2,8 @@
 
 Audit date: October 20, 2026 (America/New_York).
 
+Implementation has since completed locally in phases. See [dependency-upgrade-progress.md](dependency-upgrade-progress.md) for the installed versions, validation results, zero-vulnerability final scan, and remaining upstream peer warning. The assessment below preserves the pre-upgrade audit snapshot.
+
 ## Recommendation
 
 Upgrade in stages. First repair the existing verification setup and refresh security-sensitive packages on their current major versions. Then migrate the framework and tooling in coordinated groups. A blanket update to every `latest` tag would select incompatible versions: TypeScript 7.0.2 is outside SvelteKit 3.1.0's `^6.0.0` peer range, outside svelte-check 4.7.7's TypeScript 5/6 range, and outside typescript-eslint 8.72.0's `<6.1.0` range.
