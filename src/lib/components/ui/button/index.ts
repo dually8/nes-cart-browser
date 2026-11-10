@@ -29,12 +29,15 @@ const buttonVariants = tv({
 type Variant = VariantProps<typeof buttonVariants>['variant'];
 type Size = VariantProps<typeof buttonVariants>['size'];
 
-type Props = ButtonPrimitive.Props & {
+type Props = Extract<ButtonPrimitive.RootProps, { href?: never }> & {
 	variant?: Variant;
 	size?: Size;
 };
 
-type Events = ButtonPrimitive.Events;
+type Events = {
+	click: MouseEvent;
+	keydown: KeyboardEvent;
+};
 
 export {
 	Root,

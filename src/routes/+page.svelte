@@ -3,19 +3,19 @@
 	import { quintInOut } from 'svelte/easing';
 	import { toggleMode } from 'mode-watcher';
 	import { Image } from '@unpic/svelte';
-	import { Button } from '$lib/components/ui/button';
-	import { Card, CardContent, CardHeader } from '$lib/components/ui/card';
-	import { Input } from '$lib/components/ui/input';
-	import Sun from 'lucide-svelte/icons/sun';
-	import Moon from 'lucide-svelte/icons/moon';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import { Card, CardContent, CardHeader } from '#lib/components/ui/card/index.js';
+	import { Input } from '#lib/components/ui/input/index.js';
+	import { Sun, Moon } from '@lucide/svelte';
 	import type { NesCartItem } from '../models/NesCartItem';
 	import carts from '../nesCarts.json';
 	import { onMount } from 'svelte';
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
+	import type { AssetPath } from '$app/types';
 
 	const baseCarts = carts.map((cart) => ({
 		...cart,
-		coverPhotoUrl: `${base}${cart.coverPhotoUrl}`,
+		coverPhotoUrl: asset(cart.coverPhotoUrl.slice(1) as AssetPath),
 	}));
 
 	let nesCarts: NesCartItem[] = takeCarts(20);
@@ -48,7 +48,7 @@
 			class="grow"
 			bind:value={searchQuery} />
 		<Button
-			on:click={toggleMode}
+			onclick={toggleMode}
 			variant="outline"
 			size="icon"
 			class="flex-initial">
@@ -71,7 +71,7 @@
 				No results found
 			</p>
 		{:else}
-			{#each filteredNesCarts as nesCart, i}
+			{#each filteredNesCarts as nesCart, i (nesCart)}
 				<a
 					href={`https://nescartdb.com/search/advanced?catalog_op=contains&catalog=${nesCart.catalogId}`}
 					aria-label={`View details for ${nesCart.title} on NES Cart DB`}>

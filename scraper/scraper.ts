@@ -3,6 +3,7 @@ import path from 'path';
 import type { NesCartItem } from '../src/models/NesCartItem';
 import fs from 'fs';
 import { Logger, LogLevel } from './logger';
+import { getImagePath } from './image-path';
 
 const ASSETS_DIR = path.join(process.cwd(), 'static', 'assets');
 const BASE_URL = 'https://nescartdb.com';
@@ -65,6 +66,7 @@ async function getGameDetails(page: playwright.Page, game: GameLink): Promise<Ga
 }
 
 async function saveGameImage(page: playwright.Page, catalogId: string) {
+	const imgPath = getImagePath(ASSETS_DIR, catalogId);
 	const cartImg = page.locator(CART_FRONT_SELECTOR);
 	const hasImg = (await cartImg.locator('a').count()) > 0;
 	logger.info('Has Img:', hasImg);
@@ -78,7 +80,6 @@ async function saveGameImage(page: playwright.Page, catalogId: string) {
 		const imgSrc = await page.locator(IMG_TO_SAVE_SELECTOR).getAttribute('src');
 		logger.info('Image Src:', imgSrc);
 		// save the image
-		const imgPath = path.join(ASSETS_DIR, `${catalogId}.png`);
 		const imgResponse = await fetch(`${BASE_URL}${imgSrc}`);
 		const imgBuffer = await imgResponse.arrayBuffer();
 		fs.writeFileSync(imgPath, Buffer.from(imgBuffer));
