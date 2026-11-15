@@ -1,4 +1,3 @@
-import prettier from 'eslint-config-prettier';
 import path from 'node:path';
 import { includeIgnoreFile } from '@eslint/compat';
 import js from '@eslint/js';
@@ -23,14 +22,14 @@ export default defineConfig(
 		'.env',
 		'.env.*',
 		'!.env.example',
-		'pnpm-lock.yaml',
+		'bun.lock',
 		'package-lock.json',
 		'yarn.lock',
 	]),
 	js.configs.recommended,
 	...ts.configs.recommended,
 	...svelte.configs.recommended,
-	prettier,
+	// Oxfmt handles formatting; retain Svelte's preset that disables style rules.
 	...svelte.configs.prettier,
 	{
 		languageOptions: { globals: { ...globals.browser, ...globals.node } },

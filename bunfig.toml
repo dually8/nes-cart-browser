@@ -1,0 +1,22 @@
+[install]
+# Match the previous pnpm 24-hour release-age policy.
+minimumReleaseAge = 86400
+# Reviewed 2026-11-11: exact releases only.
+minimumReleaseAgeExcludes = [
+	"@lucide/svelte@1.72.0",
+	"bits-ui@2.21.0",
+	"vite-plus@1.6.0",
+	"@voidzero-dev/vite-plus-core@1.6.0",
+	"@voidzero-dev/vite-plus-darwin-x64@1.6.0",
+	"@voidzero-dev/vite-plus-darwin-arm64@1.6.0",
+	"@voidzero-dev/vite-plus-linux-x64-gnu@1.6.0",
+	"@voidzero-dev/vite-plus-linux-x64-musl@1.6.0",
+	"@voidzero-dev/vite-plus-linux-arm64-gnu@1.6.0",
+	"@voidzero-dev/vite-plus-linux-arm64-musl@1.6.0",
+	"@voidzero-dev/vite-plus-win32-x64-msvc@1.6.0",
+	"@voidzero-dev/vite-plus-win32-arm64-msvc@1.6.0",
+]
+
+[run]
+# Bun manages packages and scripts; executables retain their Node shebangs.
+bun = false
